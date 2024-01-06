@@ -5,16 +5,16 @@
     <div class="card card-body">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label>Username</label>
-                <input type="text" formControlName="username" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
-                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-                    <div *ngIf="f['username'].errors['required']">Username is required</div>
-                    <div *ngIf="f['username'].errors['minlength']">
-                        Username must be at least 6 characters
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                    <div *ngIf="f['email'].errors['minlength']">
+                        Email must be at least 6 characters
                     </div>
-                    <div *ngIf="f['username'].errors['maxlength']">
-                        Username must not exceed 20 characters
+                    <div *ngIf="f['email'].errors['maxlength']">
+                        Email must not exceed 20 characters
                     </div>
                 </div>
             </div>
