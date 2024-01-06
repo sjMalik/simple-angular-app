@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,29 +7,53 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  form: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl('')
+  });
+  submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    })
-  }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-
+    this.form = this.formBuilder.group(
+      {
+        username: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(20)
+          ]
+        ],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(30)
+          ]
+        ]
+      }
+    )
   }
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      const username = this.loginForm.value.username;
-      const password = this.loginForm.value.password;
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
+  }
 
-      // TODO: API calls
-      console.log('Submitted: ', { username, password })
-    } else {
-      // TODO: Handle form validation error, display validation messages
-      this.loginForm.markAllAsTouched();
+  onSubmit(): void {
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      return;
     }
+
+    console.log(JSON.stringify(this.form.value, null, 2))
+  }
+
+  onReset(): void {
+    this.submitted = false;
+    this.form.reset();
   }
 }

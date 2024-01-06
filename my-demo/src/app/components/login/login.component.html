@@ -3,18 +3,31 @@
         <h5>Login</h5>
     </div>
     <div class="card-body">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username"
-                    formControlName="username">
+                    formControlName="username" [ngClass]="{'is-invalid': submitted && f['username'].errors}">
+                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                    <div *ngIf="f['username'].errors['required']">Username is required</div>
+                    <div *ngIf="f['username'].errors['minlength']">Username must be at least 6 characters</div>
+                    <div *ngIf="f['username'].errors['maxlength']">Username must not exceeds 20 characters</div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password"
-                    formControlName="password">
+                    formControlName="password" [ngClass]="{'is-invalid': submitted && f['password'].errors}">
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">password is required</div>
+                    <div *ngIf="f['password'].errors['minlength']">password must be at least 6 characters</div>
+                    <div *ngIf="f['password'].errors['maxlength']">password must not exceeds 30 characters</div>
+                </div>
             </div>
-            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="reset" (click)="onReset()" class="btn btn-secondary ml-2">Reset</button>
+            </div>
         </form>
     </div>
 </div>
