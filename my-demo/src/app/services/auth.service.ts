@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private apiUrl = 'http://localhost:3001'; // Replace with your login API endpoint
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   login(email: string, password: string) {
     return this.http.post<any>(`${this.apiUrl}/api/login`, { email, password }).pipe(
@@ -19,6 +20,7 @@ export class AuthService {
         // Store token in local storage
         if (token) {
           localStorage.setItem('token', token);
+          this.toastr.success('Login Successful!', 'Success');
         }
       })
     );
