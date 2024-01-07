@@ -130,7 +130,9 @@ ng generate component components/login
 
 1. ~~Video #1: Scaffolding~~
 2. ~~Video #2: Add Bootstrap, Generate Login Component, Add login route, Login Form Design~~
-3. Video #3: Handle Login Form Submission, API calls with an Interceptor, Generate Dashboard Component
+3. ~~Video #3: Handle Login Form Submission & Form validation using reactive forms approach~~
+4. Video #4:Auth Service, Login API Integration & toaster notification
+5.API calls with an Interceptor, Generate Dashboard Component
 4. Video #4: Create common nav layout\
 5. Video #5: Add login service
 6. Video #6: Lifecycle Hooks
