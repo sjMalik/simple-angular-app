@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import * as jwt_decode from "jwt-decode";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthService {
   private apiUrl = 'http://localhost:3001'; // Replace with your login API endpoint
 
-  constructor(private http: HttpClient, private toastr: ToastrService) { }
+  constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
   login(email: string, password: string) {
     return this.http.post<any>(`${this.apiUrl}/api/login`, { email, password }).pipe(
@@ -21,15 +23,14 @@ export class AuthService {
         if (token) {
           localStorage.setItem('token', token);
           this.toastr.success('Login Successful!', 'Success');
+          this.router.navigate(['/']);
         }
-      })
+      },
+        error => {
+          this.toastr.error('Login failed. Please check your credentials.', 'Error');
+        }
+      )
     );
-  }
-
-  logout() {
-    // Remove token from local storage on logout
-    localStorage.removeItem('token');
-    // Additional: Perform any other logout-related tasks
   }
 
   getToken(): string | null {
@@ -39,5 +40,24 @@ export class AuthService {
   isLoggedIn(): boolean {
     // Check if token exists in local storage
     return !!this.getToken();
+  }
+
+  getDecodedToken(): any | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        return jwt_decode.jwtDecode(token);
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return null;
+      }
+    }
+    return null;
+  }
+
+  logout() {
+    // Remove token from local storage on logout
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }
