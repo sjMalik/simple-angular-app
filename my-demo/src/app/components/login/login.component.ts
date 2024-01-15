@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +9,17 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 })
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
+    email: new FormControl(''),
     password: new FormControl('')
   });
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        username: [
+        email: [
           '',
           [
             Validators.required,
@@ -49,7 +50,12 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2))
+    console.log(JSON.stringify(this.form.value, null, 2));
+    // API Call
+    this.authService.login(this.form?.value?.email, this.form?.value?.password).subscribe(() => {
+      console.log('Successfully logged in');
+      // Todo: Rediredted dashboard page
+    })
   }
 
   onReset(): void {
