@@ -8,11 +8,19 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { HomeComponent } from './components/home/home.component';
+import { TodosComponent } from './components/todos/todos.component';
+import { NewTodoComponent } from './components/new-todo/new-todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    LayoutComponent,
+    HomeComponent,
+    TodosComponent,
+    NewTodoComponent,
   ],
   imports: [
     BrowserModule,
