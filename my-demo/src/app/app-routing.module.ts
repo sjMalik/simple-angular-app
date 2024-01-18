@@ -5,6 +5,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from './components/home/home.component';
 import { TodosComponent } from './components/todos/todos.component';
 import { NewTodoComponent } from './components/new-todo/new-todo.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard], // Apply the AuthGuard to the layout route
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'todos', component: TodosComponent },
