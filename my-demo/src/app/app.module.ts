@@ -12,6 +12,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { TodosComponent } from './components/todos/todos.component';
 import { NewTodoComponent } from './components/new-todo/new-todo.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HomeComponent } from './components/home/home.component';
     LayoutComponent,
     TodosComponent,
     NewTodoComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

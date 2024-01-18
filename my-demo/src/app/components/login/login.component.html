@@ -16,6 +16,9 @@
                     <div *ngIf="f['email'].errors['maxlength']">
                         Email must not exceed 20 characters
                     </div>
+                    <div *ngIf="f['email'].errors['email']">
+                        Invalid email format. Please enter a valid email address.
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -32,11 +35,17 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Login</button>
-                <button type="button" (click)="onReset()" class="btn btn-warning ml-2">
-                    Reset
-                </button>
+            <div class="row">
+                <div class='col-md-6'>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" (click)="onReset()" class="btn btn-secondary ml-2">
+                        Reset
+                    </button>
+                </div>
+                <div class='col-md-6 text-right'>
+                    <p>Don't have an account? <a style="text-decoration: none;" href='/registration'>Registration</a>
+                    </p>
+                </div>
             </div>
         </form>
     </div>

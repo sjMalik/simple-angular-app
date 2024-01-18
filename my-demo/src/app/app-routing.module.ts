@@ -6,10 +6,12 @@ import { TodosComponent } from './components/todos/todos.component';
 import { NewTodoComponent } from './components/new-todo/new-todo.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard'; // Import the AuthGuard
+import { RegistrationComponent } from './components/registration/registration.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
   {
     path: '',
     component: LayoutComponent,

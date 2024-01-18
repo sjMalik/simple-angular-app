@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
-
-export class LoginComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
   form: FormGroup = new FormGroup({
     email: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl('')
   });
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -45,22 +45,4 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  onSubmit(): void {
-    this.submitted = true;
-
-    if (this.form.invalid) {
-      return;
-    }
-
-    this.authService.login(this.form?.value?.email, this.form?.value?.password).subscribe(() => {
-      // Redirect or perform actions after successful login
-      // Example: Redirect to dashboard or another route
-      console.log('Successfully logged in')
-    });
-  }
-
-  onReset(): void {
-    this.submitted = false;
-    this.form.reset();
-  }
 }
