@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Registration</h5>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" placeholder="Enter Email" formControlName="email"
+                    [ngClass]="{'is-invalid': submitted && f['email'].errors}">
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                    <div *ngIf="f['email'].errors['minlength']">Email must be at least 6 characters</div>
+                    <div *ngIf="f['email'].errors['maxlength']">Email must not exceeds 20 characters</div>
+                    <div *ngIf="f['email'].errors['email']">Invalid email. Please correct the email format</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" formControlName="password"
+                    [ngClass]="{'is-invalid': submitted && f['password'].errors}">
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">password is required</div>
+                    <div *ngIf="f['password'].errors['minlength']">password must be at least 6 characters</div>
+                    <div *ngIf="f['password'].errors['maxlength']">password must not exceeds 30 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cnfPassword">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" formControlName="cnfPassword"
+                    [ngClass]="{'is-invalid': submitted && f['cnfPassword'].errors}">
+                <div *ngIf="submitted && f['cnfPassword'].errors" class="invalid-feedback">
+                    <div *ngIf="f['cnfPassword'].errors['required']">Confirm Password is required</div>
+                    <div *ngIf="f['cnfPassword'].errors['confirmedValidator']">Passwords don't match</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" placeholder="Enter First Name" formControlName="firstName"
+                    [ngClass]="{'is-invalid': submitted && f['firstName'].errors}">
+                <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['firstName'].errors['required']">First Name is required</div>
+                    <div *ngIf="f['firstName'].errors['minlength']">First Name must be at least 6 characters
+                    </div>
+                    <div *ngIf="f['firstName'].errors['maxlength']">First Name must not exceeds 20 characters
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastName"
+                    [ngClass]="{'is-invalid': submitted && f['lastName'].errors}">
+                <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['lastName'].errors['required']">Last Name is required</div>
+                    <div *ngIf="f['lastName'].errors['minlength']">Last Name must be at least 6 characters
+                    </div>
+                    <div *ngIf="f['lastName'].errors['maxlength']">Last Name must not exceeds 20 characters
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="reset" (click)="onReset()" class="btn btn-secondary ml-2">Reset</button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p>Already have an account? <a href="/login" style="text-decoration: none;">Login</a>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

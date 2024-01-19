@@ -24,9 +24,15 @@
                     <div *ngIf="f['password'].errors['maxlength']">password must not exceeds 30 characters</div>
                 </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Login</button>
-                <button type="reset" (click)="onReset()" class="btn btn-secondary ml-2">Reset</button>
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="reset" (click)="onReset()" class="btn btn-secondary ml-2">Reset</button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p>Don't have an account? <a href="/registration" style="text-decoration: none;">Registration</a>
+                    </p>
+                </div>
             </div>
         </form>
     </div>
