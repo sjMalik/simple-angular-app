@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   });
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -101,6 +102,13 @@ export class RegistrationComponent implements OnInit {
 
     console.log(JSON.stringify(this.form.value, null, 2));
     // TODO: API Call
+    this.authService.registration(
+      this.form?.value?.email,
+      this.form?.value?.password,
+      this.form?.value?.firstName,
+      this.form?.value?.lastName).subscribe(() => {
+        console.log('registration successfull')
+      })
   }
 
   onReset(): void {

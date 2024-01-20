@@ -13,6 +13,21 @@ export class AuthService {
 
   constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
+  registration(email: string, password: string, firstName: string, lastName: string) {
+    return this.http.post<any>(`${this.apiUrl}/api/register`, { email, password, firstName, lastName }).pipe(
+      tap(response => {
+        if (response._id) {
+          this.toastr.success('Registration Successful', 'Success');
+          this.router.navigate(['/login'])
+        }
+      },
+        error => {
+          this.toastr.error(error?.error?.message ? error?.error?.message : 'Registration Failed !', 'Error')
+        }
+      )
+    )
+  }
+
   login(email: string, password: string) {
     return this.http.post<any>(`${this.apiUrl}/api/login`, { email, password }).pipe(
       tap(response => {
