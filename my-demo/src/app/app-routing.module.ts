@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'todos', component: TodosComponent },
       { path: 'newTodo', component: NewTodoComponent },
-      { path: '', redirectTo: '/home', pathMatch: 'full' }
+      { path: '', redirectTo: '/todos', pathMatch: 'full' }
     ]
   }
 ];
