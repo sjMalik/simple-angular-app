@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3001'; // Replace with your login API endpoint
+  private apiUrl = 'http://localhost:3001/api'; // Replace with your login API endpoint
 
   constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
   register(email: string, password: string, firstName: string, lastName: string) {
-    return this.http.post<any>(`${this.apiUrl}/api/register`, { email, password, firstName, lastName }).pipe(
+    return this.http.post<any>(`${this.apiUrl}/register`, { email, password, firstName, lastName }).pipe(
       tap(response => {
         console.log(response)
         if (response?._id) {
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${this.apiUrl}/api/login`, { email, password }).pipe(
+    return this.http.post<any>(`${this.apiUrl}/login`, { email, password }).pipe(
       tap(response => {
         // Assuming the API returns a JWT token upon successful login
         const token = response.token;
