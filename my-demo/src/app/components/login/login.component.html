@@ -1,39 +1,43 @@
-<div class="card">
-    <div class="card-header">
-        <h5>Login</h5>
-    </div>
-    <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email"
-                    formControlName="email" [ngClass]="{'is-invalid': submitted && f['email'].errors}">
-                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-                    <div *ngIf="f['email'].errors['required']">Email is required</div>
-                    <div *ngIf="f['email'].errors['minlength']">Email must be at least 6 characters</div>
-                    <div *ngIf="f['email'].errors['maxlength']">Email must not exceeds 20 characters</div>
+<div class="container mt-5 mb-5">
+    <div class="card">
+        <div class="card-header">
+            <h5>Login</h5>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email"
+                        formControlName="email" [ngClass]="{'is-invalid': submitted && f['email'].errors}">
+                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <div *ngIf="f['email'].errors['required']">Email is required</div>
+                        <div *ngIf="f['email'].errors['minlength']">Email must be at least 6 characters</div>
+                        <div *ngIf="f['email'].errors['maxlength']">Email must not exceeds 20 characters</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password"
-                    formControlName="password" [ngClass]="{'is-invalid': submitted && f['password'].errors}">
-                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                    <div *ngIf="f['password'].errors['required']">password is required</div>
-                    <div *ngIf="f['password'].errors['minlength']">password must be at least 6 characters</div>
-                    <div *ngIf="f['password'].errors['maxlength']">password must not exceeds 30 characters</div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Enter Password" formControlName="password"
+                        [ngClass]="{'is-invalid': submitted && f['password'].errors}">
+                    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                        <div *ngIf="f['password'].errors['required']">password is required</div>
+                        <div *ngIf="f['password'].errors['minlength']">password must be at least 6 characters</div>
+                        <div *ngIf="f['password'].errors['maxlength']">password must not exceeds 30 characters</div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                    <button type="reset" (click)="onReset()" class="btn btn-secondary ml-2">Reset</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="reset" (click)="onReset()" class="btn btn-secondary ml-2">Reset</button>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <p>Don't have an account? <a href="/registration"
+                                style="text-decoration: none;">Registration</a>
+                        </p>
+                    </div>
                 </div>
-                <div class="col-md-6 text-right">
-                    <p>Don't have an account? <a href="/registration" style="text-decoration: none;">Registration</a>
-                    </p>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

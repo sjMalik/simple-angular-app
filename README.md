@@ -86,3 +86,18 @@ ng generate component components/login
 ```js
 ng generate service services/auth
 ```
+
+**Material Design for Todo List**
+*https://freefrontend.com/bootstrap-to-do-lists/*
+https://mdbootstrap.com/docs/standard/extended/to-do-list/
+
+**Add Font Awesome icons to an Angular project**
+1. Install Font Awesome
+```
+npm install --save @fortawesome/fontawesome-free
+```
+
+2. Import the Styles in Angular CLI
+```
+@import "~@fortawesome/fontawesome-free/css/all.css";
+```
