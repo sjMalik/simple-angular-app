@@ -137,3 +137,8 @@ ng generate component components/login
 5. Video #5: Add login service
 6. Video #6: Lifecycle Hooks
 7. Video #7: Store Management
+
+## Generate Service
+```
+ng generate service services/todo
+```
