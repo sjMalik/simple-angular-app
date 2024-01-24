@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Todo } from 'src/app/models/todo.model';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -9,18 +10,34 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class TodosComponent {
   todos?: Todo[];
+  title: string = '';
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.getTodoList()
+  }
+
+  getTodoList(): void {
     this.todoService.list().subscribe(
       response => {
-        console.log(response);
         this.todos = response.todos
       },
       error => {
-        // Handle the error here
         console.error('List Error:', error);
+      }
+    )
+  }
+
+  createTodo(): void {
+    this.todoService.create(this.title).subscribe(
+      responce => {
+        this.title = ''
+        this.toastr.success('Todo Creation Successful!', 'Success');
+        this.getTodoList();
+      },
+      error => {
+        this.toastr.error(error?.error?.message ? error?.error?.message : 'Todo Creation Failed !', 'Error')
       }
     )
   }
