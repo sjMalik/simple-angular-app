@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3001';
+  private apiUrl = 'http://localhost:3001/api';
 
   constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
   registration(email: string, password: string, firstName: string, lastName: string) {
-    return this.http.post<any>(`${this.apiUrl}/api/register`, { email, password, firstName, lastName }).pipe(
+    return this.http.post<any>(`${this.apiUrl}/register`, { email, password, firstName, lastName }).pipe(
       tap(response => {
         if (response._id) {
           this.toastr.success('Registration Successful', 'Success');
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${this.apiUrl}/api/login`, { email, password }).pipe(
+    return this.http.post<any>(`${this.apiUrl}/login`, { email, password }).pipe(
       tap(response => {
         const token = response.token;
 
