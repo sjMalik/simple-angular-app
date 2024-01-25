@@ -51,4 +51,16 @@ export class TodoService {
       )
     )
   }
+
+  deleteTodo(todoid: string) {
+    return this.http.delete<any>(`${this.apiUrl}/${todoid}`).pipe(
+      tap(response => {
+        return response;
+      },
+        error => {
+          return error;
+        }
+      )
+    )
+  }
 }

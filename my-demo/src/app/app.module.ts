@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { NewTodoComponent } from './components/new-todo/new-todo.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
     TodosComponent,
     NewTodoComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
         closeButton: true, // Optional: Display close button
         progressBar: true // Optional: Display progress bar
       }
-    )
+    ),
+    MatDialogModule
   ],
   providers: [
     {

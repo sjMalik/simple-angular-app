@@ -3,6 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Todo } from 'src/app/models/todo.model';
 import { TodoService } from 'src/app/services/todo.service';
 
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteModalComponent } from 'src/app/delete-modal/delete-modal.component';
+
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -12,7 +15,7 @@ export class TodosComponent {
   todos?: Todo[];
   title: string = '';
 
-  constructor(private todoService: TodoService, private toastr: ToastrService) { }
+  constructor(private todoService: TodoService, private toastr: ToastrService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getTodoList()
@@ -57,6 +60,31 @@ export class TodosComponent {
     // Perform your desired method call here
     console.log(`Checkbox changed for todo with title: ${todo.title}`);
     // You can call any method or perform any logic you need here
+  }
+
+  openDeleteModal(todo: any): void {
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: '300px',
+      data: { /* pass any data you need to the modal here */ }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // User clicked "Delete"
+        this.todoService.deleteTodo(todo._id).subscribe(
+          response => {
+            this.getTodoList();
+            this.toastr.success('Todo Successfully deleted', 'Success');
+          },
+          error => {
+            this.toastr.error(error?.error?.message ? error?.error?.message : 'Todo delete Failed !', 'Error')
+          }
+        )
+      } else {
+        // User clicked "Cancel" or closed the modal
+        console.log('Delete canceled');
+      }
+    });
   }
 
 }
