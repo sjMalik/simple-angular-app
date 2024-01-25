@@ -42,4 +42,21 @@ export class TodosComponent {
     )
   }
 
+  onCheckboxChange(todo: any) {
+    this.todoService.checkUncheckTodo(todo._id, todo.title, !todo.isDone).subscribe(
+      response => {
+        this.getTodoList();
+        const message = todo.isDone ? 'Todo successfully unchecked' : 'Todo successfully checked';
+        this.toastr.success(message, 'Success');
+      },
+      error => {
+        this.toastr.error(error?.error?.message ? error?.error?.message : 'Todo check/uncheck Failed !', 'Error')
+      }
+
+    )
+    // Perform your desired method call here
+    console.log(`Checkbox changed for todo with title: ${todo.title}`);
+    // You can call any method or perform any logic you need here
+  }
+
 }

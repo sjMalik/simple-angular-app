@@ -39,4 +39,16 @@ export class TodoService {
       )
     );
   }
+
+  checkUncheckTodo(todoid: string, title: string, isDone: boolean) {
+    return this.http.put<any>(`${this.apiUrl}/${todoid}`, { title, isDone: isDone ? 'true' : 'false' }).pipe(
+      tap(response => {
+        return response;
+      },
+        error => {
+          return error;
+        }
+      )
+    )
+  }
 }
