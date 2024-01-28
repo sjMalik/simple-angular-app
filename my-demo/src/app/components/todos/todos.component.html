@@ -11,12 +11,13 @@
                 <li *ngFor="let todo of todos; let i = index" [class.completed]="todo.isDone">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="checkbox" type="checkbox" [checked]="todo.isDone">
+                            <input class="checkbox" type="checkbox" [checked]="todo.isDone"
+                                (change)="checkUncheckTodo(todo)">
                             {{ todo.title }}
                             <i class="input-helper"></i>
                         </label>
                     </div>
-                    <i class="remove mdi mdi-close-circle-outline"></i>
+                    <i (click)="openDeleteModal(todo)" class="remove mdi mdi-close-circle-outline"></i>
                 </li>
             </ul>
         </div>
