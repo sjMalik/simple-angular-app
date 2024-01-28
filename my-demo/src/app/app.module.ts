@@ -16,6 +16,9 @@ import { HomeComponent } from './components/home/home.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { MailboxComponent } from './email/mailbox/mailbox.component';
+import { ComposeEmailComponent } from './email/compose-email/compose-email.component';
+import { ViewEmailComponent } from './email/view-email/view-email.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     NewTodoComponent,
     HomeComponent,
     RegistrationComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    MailboxComponent,
+    ComposeEmailComponent,
+    ViewEmailComponent
   ],
   imports: [
     BrowserModule,
