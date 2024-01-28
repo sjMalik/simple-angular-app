@@ -15,6 +15,9 @@ import { TodosComponent } from './components/todos/todos.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { DeleteModalComponent } from './components/common/delete-modal/delete-modal.component';
+import { MailboxComponent } from './components/email/mailbox/mailbox.component';
+import { ComposeEmailComponent } from './components/email/compose-email/compose-email.component';
+import { ViewEmailComponent } from './components/email/view-email/view-email.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { DeleteModalComponent } from './components/common/delete-modal/delete-mo
     TodosComponent,
     RegistrationComponent,
     DeleteModalComponent,
+    MailboxComponent,
+    ComposeEmailComponent,
+    ViewEmailComponent,
   ],
   imports: [
     BrowserModule,
